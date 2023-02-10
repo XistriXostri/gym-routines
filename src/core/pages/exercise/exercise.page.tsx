@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { Filter } from '../../components/filter/filter';
 import { ExerciseContext } from '../../context/exercises/exercise.context';
 import { generateId } from '../../helpers/generate-id';
 import { DefaultExerciseStructure } from '../../models/exercise/exercise';
@@ -26,6 +27,9 @@ export default function ExercisePage() {
         <>
             <h2 className="page__title">Exercises</h2>
             <hr className="bar"></hr>
+            <div>
+                <Filter></Filter>
+            </div>
             <div>
                 {exercisesFiltered.length
                     ? Exercises(exercisesFiltered)
