@@ -1,9 +1,10 @@
+import { Header } from '../header/header';
 import { AppRoutes } from '../routes/app.routes';
-import './App.css';
 
 function App() {
     return (
         <div className="App">
+            <Header></Header>
             <AppRoutes></AppRoutes>
         </div>
     );
