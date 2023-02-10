@@ -1,9 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
+import { AppRoutes } from '../routes/app.routes';
 import './App.css';
 
 function App() {
-    return <div className="App"></div>;
+    return (
+        <div className="App">
+            <AppRoutes></AppRoutes>
+        </div>
+    );
 }
 
 export default App;
