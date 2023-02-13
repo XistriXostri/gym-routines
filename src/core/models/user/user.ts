@@ -1,6 +1,6 @@
 import { RoutineStructure } from '../routine/routine';
 
-export type userStructure = {
+export type UserStructure = {
     id: string;
     name: string;
     photo: string;
@@ -8,7 +8,7 @@ export type userStructure = {
     routines: Array<RoutineStructure['id']>;
 };
 
-export class User implements userStructure {
+export class User implements UserStructure {
     constructor(
         public id: string,
         public name: string,
@@ -18,7 +18,7 @@ export class User implements userStructure {
     ) {}
 }
 
-export type userStructureWithoutId = {
+export type UserStructureWithoutId = {
     username: string;
     photo: string;
     email: string;

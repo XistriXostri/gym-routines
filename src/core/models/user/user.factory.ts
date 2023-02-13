@@ -1,4 +1,4 @@
-import { User, userStructure, userStructureWithoutId } from './user';
+import { User, UserStructure, UserStructureWithoutId } from './user';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function createUserFromGoogleUser(user: any): User {
@@ -7,8 +7,8 @@ export function createUserFromGoogleUser(user: any): User {
 }
 
 export function createUserFromDatabase(
-    data: userStructureWithoutId,
-    uid: userStructure['id']
+    data: UserStructureWithoutId,
+    uid: UserStructure['id']
 ): User {
     const { username: name, email, photo, routines } = data;
     return new User(uid, name, photo, email, routines);
