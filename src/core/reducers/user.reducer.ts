@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { UserStructure } from '../models/user/user';
 import {
-    userAddRoutine,
-    userDeleteRoutine,
-    userLoadRoutines,
+    userAddRoutineCreator,
+    userDeleteRoutineCreator,
+    userLoadRoutinesCreator,
     userRemoveCreator,
     userSetCreator,
 } from './action.creators';
@@ -25,11 +25,11 @@ export const userReducer = createReducer(initialState, (builder) => {
         ...state,
         user: null,
     }));
-    builder.addCase(userLoadRoutines, (state, action) => {
+    builder.addCase(userLoadRoutinesCreator, (state, action) => {
         if (state.user) state.user.routines = action.payload;
         return state;
     });
-    builder.addCase(userAddRoutine, (state, action) => {
+    builder.addCase(userAddRoutineCreator, (state, action) => {
         if (state.user) {
             if (!state.user.routines) {
                 state.user.routines = [];
@@ -38,7 +38,7 @@ export const userReducer = createReducer(initialState, (builder) => {
         }
         return state;
     });
-    builder.addCase(userDeleteRoutine, (state, action) => {
+    builder.addCase(userDeleteRoutineCreator, (state, action) => {
         if (state.user)
             state.user.routines = state.user.routines.filter(
                 (id) => id !== action.payload
