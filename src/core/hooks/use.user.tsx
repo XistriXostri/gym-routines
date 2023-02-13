@@ -6,17 +6,14 @@ import {
 } from '../models/user/user.factory';
 import { useMemo } from 'react';
 import { UsersRepository } from '../services/repository/repo.user';
-import { UserStructure, UserStructureWithoutId } from '../models/user/user';
+import { UserStructure, UserStructureOnDatabase } from '../models/user/user';
 import { RootState } from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    userAddRoutine,
-    userDeleteRoutine,
-    userLoadRoutines,
+    routinesLoadCreator,
     userRemoveCreator,
     userSetCreator,
 } from '../reducers/action.creators';
-import { RoutineStructure } from '../models/routine/routine';
 
 export type LoginData = { user: UserStructure; token: string };
 export function useUser() {
@@ -43,6 +40,7 @@ export function useUser() {
     const handleLogout = () => {
         signOut(auth);
         dispatch(userRemoveCreator());
+        dispatch(routinesLoadCreator([]));
     };
 
     //TODO: fix non-serializable value alert
@@ -55,35 +53,26 @@ export function useUser() {
                     repoUsers.register(userData);
                     return;
                 }
+
+                const userDatafromDataBase = data as UserStructureOnDatabase;
+
+                //TODO: creo que esto se puede quitar
                 const userDataLoaded = createUserFromDatabase(
-                    data as UserStructureWithoutId,
+                    userDatafromDataBase,
                     userData.id
                 );
-
-                const userRoutines = userDataLoaded.routines;
-
-                dispatch(userLoadRoutines(userRoutines));
                 console.log('handleLogin:', userDataLoaded);
+
+                const routines = userDatafromDataBase.routines;
+                dispatch(routinesLoadCreator(routines));
             })
             .catch((error) => console.log(error));
-    };
-
-    const handleAddRoutine = (id: RoutineStructure['id']) => {
-        dispatch(userAddRoutine(id));
-        repoUsers.update(userState.user as UserStructure);
-    };
-
-    const handleDeleteRoutine = (id: RoutineStructure['id']) => {
-        dispatch(userDeleteRoutine(id));
-        repoUsers.update(userState.user as UserStructure);
     };
 
     return {
         handleRegister,
         handleLogin,
         handleLogout,
-        handleAddRoutine,
-        handleDeleteRoutine,
         userState,
     };
 }
