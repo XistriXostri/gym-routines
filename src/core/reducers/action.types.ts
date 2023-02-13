@@ -13,4 +13,5 @@ export const routineActionTypes = {
     delete: 'routine@delete',
     setCurrent: 'routine@setCurrent',
     removeCurrent: 'routine@removeCurrent',
+    editMode: 'routine@editMode',
 };

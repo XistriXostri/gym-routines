@@ -1,23 +1,11 @@
 import { createAction } from '@reduxjs/toolkit';
-import { RoutineStructure } from '../models/routine/routine';
+import { RoutineStructure } from '../models/routine/routine.model';
 import { UserStructure } from '../models/user/user';
 import { routineActionTypes, userActionTypes } from './action.types';
 
 export const userSetCreator = createAction<UserStructure>(userActionTypes.set);
 
 export const userRemoveCreator = createAction(userActionTypes.remove);
-
-export const userLoadRoutinesCreator = createAction<UserStructure['routines']>(
-    userActionTypes.loadRoutines
-);
-
-export const userAddRoutineCreator = createAction<RoutineStructure['id']>(
-    userActionTypes.addRoutine
-);
-
-export const userDeleteRoutineCreator = createAction<RoutineStructure['id']>(
-    userActionTypes.deleteRoutine
-);
 
 export const routinesLoadCreator = createAction<Array<RoutineStructure>>(
     routineActionTypes.load
@@ -40,4 +28,8 @@ export const routinesSetCurrentCreator = createAction<RoutineStructure>(
 );
 export const routinesRemoveCurrentCreator = createAction(
     routineActionTypes.removeCurrent
+);
+
+export const routinesEditModeCreator = createAction(
+    routineActionTypes.editMode
 );
