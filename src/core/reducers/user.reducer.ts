@@ -30,8 +30,12 @@ export const userReducer = createReducer(initialState, (builder) => {
         return state;
     });
     builder.addCase(userAddRoutine, (state, action) => {
-        if (state.user)
+        if (state.user) {
+            if (!state.user.routines) {
+                state.user.routines = [];
+            }
             state.user.routines = state.user.routines.concat(action.payload);
+        }
         return state;
     });
     builder.addCase(userDeleteRoutine, (state, action) => {

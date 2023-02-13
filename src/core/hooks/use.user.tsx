@@ -10,10 +10,13 @@ import { UserStructure, UserStructureWithoutId } from '../models/user/user';
 import { RootState } from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+    userAddRoutine,
+    userDeleteRoutine,
     userLoadRoutines,
     userRemoveCreator,
     userSetCreator,
 } from '../reducers/action.creators';
+import { RoutineStructure } from '../models/routine/routine';
 
 export type LoginData = { user: UserStructure; token: string };
 export function useUser() {
@@ -42,7 +45,7 @@ export function useUser() {
         dispatch(userRemoveCreator());
     };
 
-    //TODO: cambiar user logout
+    //TODO: fix non-serializable value alert
 
     const handleRegister = async (userData: UserStructure) => {
         repoUsers
@@ -65,10 +68,22 @@ export function useUser() {
             .catch((error) => console.log(error));
     };
 
+    const handleAddRoutine = (id: RoutineStructure['id']) => {
+        dispatch(userAddRoutine(id));
+        repoUsers.update(userState.user as UserStructure);
+    };
+
+    const handleDeleteRoutine = (id: RoutineStructure['id']) => {
+        dispatch(userDeleteRoutine(id));
+        repoUsers.update(userState.user as UserStructure);
+    };
+
     return {
         handleRegister,
         handleLogin,
         handleLogout,
+        handleAddRoutine,
+        handleDeleteRoutine,
         userState,
     };
 }

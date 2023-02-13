@@ -3,7 +3,6 @@ import { useUser } from '../../hooks/use.user';
 
 export function Firebase() {
     const { handleLogin, handleLogout, handleRegister, userState } = useUser();
-
     const handleClick = async (event: SyntheticEvent) => {
         const action = (event.target as HTMLElement).id;
         switch (action) {
