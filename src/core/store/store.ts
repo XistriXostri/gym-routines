@@ -7,6 +7,10 @@ export const store = configureStore({
         user: userReducer,
         routines: routinesReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 });
 
 export type RootStore = typeof store;
