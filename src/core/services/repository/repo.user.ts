@@ -1,8 +1,8 @@
 import { onValue, ref, set } from 'firebase/database';
 import { dataBase } from '../../../config';
-import { userStructure } from '../../models/user/user';
+import { UserStructure } from '../../models/user/user';
 
-export class UserRepository {
+export class UsersRepository {
     database;
     reference;
     constructor() {
@@ -10,7 +10,7 @@ export class UserRepository {
         this.reference = ref(this.database, 'users/');
     }
 
-    load(uid: userStructure['id']) {
+    load(uid: UserStructure['id']) {
         const promise = new Promise((resolve, reject) => {
             const userReference = ref(dataBase, 'users/' + uid);
             onValue(
@@ -27,7 +27,7 @@ export class UserRepository {
         return promise;
     }
 
-    register(userData: userStructure) {
+    register(userData: UserStructure) {
         const userReference = ref(dataBase, 'users/' + userData.id);
         set(userReference, {
             username: userData.name,
@@ -37,7 +37,7 @@ export class UserRepository {
         });
     }
 
-    update(userData: userStructure) {
+    update(userData: UserStructure) {
         const userReference = ref(dataBase, 'users/' + userData.id);
         set(userReference, {
             username: userData.name,
