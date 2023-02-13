@@ -38,12 +38,10 @@ export class UsersRepository {
     }
 
     update(userData: UserStructure) {
-        const userReference = ref(dataBase, 'users/' + userData.id);
-        set(userReference, {
-            username: userData.name,
-            email: userData.email,
-            photo: userData.photo,
-            routines: userData.routines,
-        });
+        const userReference = ref(
+            dataBase,
+            'users/' + userData.id + '/routines/'
+        );
+        set(userReference, userData.routines);
     }
 }
