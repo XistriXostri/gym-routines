@@ -37,11 +37,12 @@ export class UsersRepository {
         });
     }
 
-    update(userData: UserStructure) {
-        const userReference = ref(
-            dataBase,
-            'users/' + userData.id + '/routines/'
-        );
-        set(userReference, userData.routines);
-    }
+    //TODO: se puede quitar?
+    // update(userData: UserStructure) {
+    //     const userReference = ref(
+    //         dataBase,
+    //         'users/' + userData.id + '/routines/'
+    //     );
+    //     set(userReference, userData.routines);
+    // }
 }

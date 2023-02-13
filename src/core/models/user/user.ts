@@ -1,11 +1,10 @@
-import { RoutineStructure } from '../routine/routine';
+import { RoutineStructure } from '../routine/routine.model';
 
 export type UserStructure = {
     id: string;
     name: string;
     photo: string;
     email: string;
-    routines: Array<RoutineStructure['id']>;
 };
 
 export class User implements UserStructure {
@@ -13,8 +12,7 @@ export class User implements UserStructure {
         public id: string,
         public name: string,
         public photo: string,
-        public email: string,
-        public routines: Array<RoutineStructure['id']>
+        public email: string
     ) {}
 }
 
@@ -22,5 +20,8 @@ export type UserStructureWithoutId = {
     username: string;
     photo: string;
     email: string;
-    routines: Array<RoutineStructure['id']>;
+};
+
+export type UserStructureOnDatabase = UserStructureWithoutId & {
+    routines: Array<RoutineStructure>;
 };
