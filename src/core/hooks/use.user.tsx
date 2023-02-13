@@ -10,9 +10,9 @@ import { UserStructure, UserStructureWithoutId } from '../models/user/user';
 import { RootState } from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    userAddRoutine,
-    userDeleteRoutine,
-    userLoadRoutines,
+    userAddRoutineCreator,
+    userDeleteRoutineCreator,
+    userLoadRoutinesCreator,
     userRemoveCreator,
     userSetCreator,
 } from '../reducers/action.creators';
@@ -62,19 +62,19 @@ export function useUser() {
 
                 const userRoutines = userDataLoaded.routines;
 
-                dispatch(userLoadRoutines(userRoutines));
+                dispatch(userLoadRoutinesCreator(userRoutines));
                 console.log('handleLogin:', userDataLoaded);
             })
             .catch((error) => console.log(error));
     };
 
     const handleAddRoutine = (id: RoutineStructure['id']) => {
-        dispatch(userAddRoutine(id));
+        dispatch(userAddRoutineCreator(id));
         repoUsers.update(userState.user as UserStructure);
     };
 
     const handleDeleteRoutine = (id: RoutineStructure['id']) => {
-        dispatch(userDeleteRoutine(id));
+        dispatch(userDeleteRoutineCreator(id));
         repoUsers.update(userState.user as UserStructure);
     };
 
