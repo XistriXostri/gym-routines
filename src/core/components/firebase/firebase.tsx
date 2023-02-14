@@ -21,14 +21,27 @@ export function Firebase() {
             {userState.user ? (
                 <>
                     <h1>{userState.user.name}</h1>
-                    <button type="button" id="logout" onClick={handleClick}>
+                    <span
+                        role="button"
+                        id="logout"
+                        className="firebase__button"
+                        onClick={handleClick}
+                    >
                         LogOut
-                    </button>
+                    </span>
                 </>
             ) : (
-                <button type="button" id="login" onClick={handleClick}>
-                    LogIn
-                </button>
+                <span
+                    role="button"
+                    id="login"
+                    className="firebase__button"
+                    onClick={handleClick}
+                >
+                    <img
+                        src="./assets/header/login-icon.png"
+                        alt="google logo"
+                    />
+                </span>
             )}
         </>
     );

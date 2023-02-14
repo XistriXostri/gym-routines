@@ -6,6 +6,7 @@ import App from './core/components/app/App';
 import { ExerciseContextProvider } from './core/context/exercises/exercise.provider';
 import { store } from './core/store/store';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
