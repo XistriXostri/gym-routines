@@ -1,12 +1,22 @@
 import { createAction } from '@reduxjs/toolkit';
+import {
+    DefaultExerciseStructure,
+    ExerciseStructure,
+} from '../models/exercise/exercise';
 import { RoutineStructure } from '../models/routine/routine.model';
 import { SesionStructure } from '../models/sesion/sesion';
 import { UserStructure } from '../models/user/user';
 import {
+    exerciseActionTypes,
     routineActionTypes,
     sesionActionTypes,
     userActionTypes,
 } from './action.types';
+
+export type ExercisePayload = {
+    exercise: ExerciseStructure;
+    sesion: SesionStructure;
+};
 
 export const userSetCreator = createAction<UserStructure>(userActionTypes.set);
 
@@ -54,4 +64,16 @@ export const sesionDeleteCreator = createAction<SesionStructure['id']>(
 
 export const sesionSetCurrentCreator = createAction<SesionStructure>(
     sesionActionTypes.setCurrent
+);
+
+export const exerciseAddCreator = createAction<DefaultExerciseStructure>(
+    exerciseActionTypes.add
+);
+
+export const exerciseUpdateCreator = createAction<ExercisePayload>(
+    exerciseActionTypes.update
+);
+
+export const exerciseDeleteCreator = createAction<ExercisePayload>(
+    exerciseActionTypes.delete
 );

@@ -1,7 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { createExerciseFromDefaultExercise } from '../models/exercise/exercise.factory';
 import { RoutineStructure } from '../models/routine/routine.model';
 import { SesionStructure } from '../models/sesion/sesion';
 import {
+    exerciseAddCreator,
+    exerciseDeleteCreator,
+    exerciseUpdateCreator,
     routinesAddCreator,
     routinesDeleteCreator,
     routinesEditModeCreator,
@@ -105,13 +109,12 @@ export const routinesReducer = createReducer(initialState, (builder) => {
 
         updatedRoutine = { ...currentRoutine, sesions: newSesions };
 
-        const prueba = updatedRoutine;
         return {
             ...state,
             routines: state.routines.map((routine) =>
-                routine.id === currentRoutine.id ? prueba : routine
+                routine.id === currentRoutine.id ? updatedRoutine : routine
             ),
-            currentRoutine: prueba,
+            currentRoutine: updatedRoutine,
         };
     });
     builder.addCase(sesionDeleteCreator, (state, action) => {
@@ -135,11 +138,124 @@ export const routinesReducer = createReducer(initialState, (builder) => {
             currentRoutine: updatedRoutine,
         };
     });
-
     builder.addCase(sesionSetCurrentCreator, (state, action) => ({
         ...state,
         currentSesion: action.payload,
     }));
+
+    builder.addCase(exerciseAddCreator, (state, action) => {
+        const newExercise = createExerciseFromDefaultExercise(action.payload);
+
+        const currentRoutine = state.routines.find(
+            (routine) => routine.id === state.currentRoutine?.id
+        );
+        if (!currentRoutine) return state;
+
+        const currentSesion = currentRoutine.sesions.find(
+            (sesion) => sesion.id === state.currentSesion?.id
+        );
+
+        if (!currentSesion) return state;
+
+        let updatedSesion: SesionStructure = currentSesion;
+
+        if (!currentSesion.exercises) {
+            updatedSesion = {
+                ...currentSesion,
+                exercises: [newExercise],
+            };
+        } else {
+            updatedSesion = {
+                ...currentSesion,
+                exercises: [...currentSesion.exercises, newExercise],
+            };
+        }
+
+        const updatedRoutine = {
+            ...currentRoutine,
+            sesions: currentRoutine.sesions.map((sesion) =>
+                sesion.id === currentSesion.id ? updatedSesion : sesion
+            ),
+        };
+
+        return {
+            ...state,
+            routines: state.routines.map((routine) =>
+                routine.id === currentRoutine.id ? updatedRoutine : routine
+            ),
+            currentRoutine: updatedRoutine,
+        };
+    });
+
+    builder.addCase(exerciseUpdateCreator, (state, action) => {
+        const currentRoutine = state.routines.find(
+            (routine) => routine.id === state.currentRoutine?.id
+        );
+        if (!currentRoutine) return state;
+
+        const currentSesion = currentRoutine.sesions.find(
+            (sesion) => sesion.id === action.payload.sesion.id
+        ) as SesionStructure;
+
+        if (!currentSesion) return state;
+
+        const newExercises = currentSesion.exercises.map((exercise) =>
+            exercise.id === action.payload.exercise.id
+                ? action.payload.exercise
+                : exercise
+        );
+
+        const updatedSesion = { ...currentSesion, exercises: newExercises };
+
+        const updatedRoutine = {
+            ...currentRoutine,
+            sesions: currentRoutine.sesions.map((sesion) =>
+                sesion.id === currentSesion.id ? updatedSesion : sesion
+            ),
+        };
+
+        return {
+            ...state,
+            routines: state.routines.map((routine) =>
+                routine.id === currentRoutine.id ? updatedRoutine : routine
+            ),
+            currentRoutine: updatedRoutine,
+        };
+    });
+
+    builder.addCase(exerciseDeleteCreator, (state, action) => {
+        const currentRoutine = state.routines.find(
+            (routine) => routine.id === state.currentRoutine?.id
+        );
+        if (!currentRoutine) return state;
+
+        const currentSesion = currentRoutine.sesions.find(
+            (sesion) => sesion.id === action.payload.sesion.id
+        ) as SesionStructure;
+
+        if (!currentSesion) return state;
+
+        const newExercises = currentSesion.exercises.filter(
+            (exercise) => exercise.id !== action.payload.exercise.id
+        );
+
+        const updatedSesion = { ...currentSesion, exercises: newExercises };
+
+        const updatedRoutine = {
+            ...currentRoutine,
+            sesions: currentRoutine.sesions.map((sesion) =>
+                sesion.id === currentSesion.id ? updatedSesion : sesion
+            ),
+        };
+
+        return {
+            ...state,
+            routines: state.routines.map((routine) =>
+                routine.id === currentRoutine.id ? updatedRoutine : routine
+            ),
+            currentRoutine: updatedRoutine,
+        };
+    });
 
     builder.addDefaultCase((state, action) => state);
 });
