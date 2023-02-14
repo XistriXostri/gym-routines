@@ -15,3 +15,17 @@ export const routineActionTypes = {
     removeCurrent: 'routine@removeCurrent',
     editMode: 'routine@editMode',
 };
+
+export const sesionActionTypes = {
+    add: 'sesion@add',
+    update: 'sesion@update',
+    delete: 'sesion@delete',
+    setCurrent: 'sesion@setCurrent',
+};
+
+export const exerciseActionTypes = {
+    add: 'exercise@add',
+    update: 'exercise@update',
+    delete: 'exercise@delete',
+    setCurrent: 'exercise@setCurrent',
+};
