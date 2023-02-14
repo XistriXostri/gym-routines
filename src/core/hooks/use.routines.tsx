@@ -7,11 +7,15 @@ import {
     routinesEditModeCreator,
     routinesSetCurrentCreator,
     routinesUpdateCreator,
+    sesionAddCreator,
+    sesionDeleteCreator,
+    sesionUpdateCreator,
 } from '../reducers/action.creators';
 import { RootState } from '../store/store';
 import { dataBase } from '../../config';
 import { ref, set } from 'firebase/database';
 import { useCallback, useEffect } from 'react';
+import { Sesion, SesionStructure } from '../models/sesion/sesion';
 
 export function useRoutines() {
     //const repoRoutines = useMemo(() => new RoutinesRepository(), []);
@@ -21,7 +25,7 @@ export function useRoutines() {
 
     const dispatch = useDispatch();
 
-    const handleAddRoutine = async () => {
+    const handleAddRoutine = () => {
         const newRoutine = createNewRoutine();
         dispatch(routinesAddCreator(newRoutine));
         dispatch(routinesSetCurrentCreator(newRoutine));
@@ -39,14 +43,31 @@ export function useRoutines() {
         dispatch(routinesEditModeCreator());
     };
 
+    const handleSetCurrentRoutine = (routine: RoutineStructure) => {
+        dispatch(routinesSetCurrentCreator(routine));
+    };
+
     const handleUpdateRoutinesOnDatabase = useCallback(() => {
         if (!routinesState.routines) return;
-
+        //TODO: aqui tengo un problema en el que actualiza la BD antes de actualizar la rutina
         //TODO: esto lo podria solucionar con un isLoading
         if (!routinesState.routines.length) return;
         const userReference = ref(dataBase, 'users/' + userId + '/routines/');
         set(userReference, routinesState.routines);
     }, [userId, routinesState.routines]);
+
+    const handleAddSesion = () => {
+        const newSesion = new Sesion([]);
+        dispatch(sesionAddCreator(newSesion));
+    };
+
+    const handleUpdateSesion = (sesion: SesionStructure) => {
+        dispatch(sesionUpdateCreator(sesion));
+    };
+
+    const handleDeleteSesion = (id: SesionStructure['id']) => {
+        dispatch(sesionDeleteCreator(id));
+    };
 
     useEffect(() => {
         handleUpdateRoutinesOnDatabase();
@@ -58,5 +79,9 @@ export function useRoutines() {
         handleDeleteRoutine,
         handleUpdateRoutine,
         handleEditMode,
+        handleSetCurrentRoutine,
+        handleAddSesion,
+        handleUpdateSesion,
+        handleDeleteSesion,
     };
 }
