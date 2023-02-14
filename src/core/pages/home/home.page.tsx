@@ -23,7 +23,7 @@ export default function HomePage() {
     return (
         <>
             {userState.user !== null ? (
-                <>
+                <div className="homepage__login">
                     {routinesState.routines ? (
                         <>
                             <h1>Mis rutinas</h1>
@@ -56,16 +56,17 @@ export default function HomePage() {
                     ) : (
                         <></>
                     )}
-                </>
+                </div>
             ) : (
-                <>
+                <div className="homepage__logout">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam illo unde fuga iste! Perferendis aut eligendi
-                        sit nostrum iste, voluptatibus amet quidem, omnis
-                        ducimus veniam doloremque consectetur odio alias fuga!
+                        Crea tus propias rutinas de entrenamiento personalizadas
+                        para lograr tus objetivos de fitness en una página web
+                        especializada. Elige entre una variedad de ejercicios y
+                        personaliza la duración e intensidad de cada uno para
+                        adaptar tu entrenamiento a tus necesidades.
                     </p>
-                </>
+                </div>
             )}
         </>
     );
