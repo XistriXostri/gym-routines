@@ -4,8 +4,12 @@ import { useRoutines } from '../../hooks/use.routines';
 import { RoutineStructure } from '../../models/routine/routine.model';
 
 export function Routine({ routine }: { routine: RoutineStructure }) {
-    const { routinesState, handleDeleteRoutine, handleUpdateRoutine } =
-        useRoutines();
+    const {
+        routinesState,
+        handleDeleteRoutine,
+        handleUpdateRoutine,
+        handleSetCurrentRoutine,
+    } = useRoutines();
 
     const handleInput = (event: SyntheticEvent) => {
         const element = event.target as HTMLFormElement;
@@ -13,7 +17,7 @@ export function Routine({ routine }: { routine: RoutineStructure }) {
     };
 
     return (
-        <li key={routine.id}>
+        <li>
             {routinesState.isEditing ? (
                 <>
                     <input
@@ -33,7 +37,12 @@ export function Routine({ routine }: { routine: RoutineStructure }) {
             ) : (
                 <>
                     <Link to={'/routine'}>
-                        <span role="button">{routine.name}</span>
+                        <span
+                            role="button"
+                            onClick={() => handleSetCurrentRoutine(routine)}
+                        >
+                            {routine.name}
+                        </span>
                     </Link>
                 </>
             )}
