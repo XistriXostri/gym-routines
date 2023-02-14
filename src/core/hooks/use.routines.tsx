@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RoutineStructure } from '../models/routine/routine.model';
 import { createNewRoutine } from '../models/routine/routine.factory';
 import {
+    exerciseAddCreator,
+    exerciseDeleteCreator,
+    exerciseUpdateCreator,
     routinesAddCreator,
     routinesDeleteCreator,
     routinesEditModeCreator,
@@ -9,6 +12,7 @@ import {
     routinesUpdateCreator,
     sesionAddCreator,
     sesionDeleteCreator,
+    sesionSetCurrentCreator,
     sesionUpdateCreator,
 } from '../reducers/action.creators';
 import { RootState } from '../store/store';
@@ -16,6 +20,10 @@ import { dataBase } from '../../config';
 import { ref, set } from 'firebase/database';
 import { useCallback, useEffect } from 'react';
 import { Sesion, SesionStructure } from '../models/sesion/sesion';
+import {
+    DefaultExerciseStructure,
+    ExerciseStructure,
+} from '../models/exercise/exercise';
 
 export function useRoutines() {
     //const repoRoutines = useMemo(() => new RoutinesRepository(), []);
@@ -69,6 +77,27 @@ export function useRoutines() {
         dispatch(sesionDeleteCreator(id));
     };
 
+    const handleSetCurrentSesion = (sesion: SesionStructure) => {
+        dispatch(sesionSetCurrentCreator(sesion));
+    };
+
+    const handleAddExercise = (exercise: DefaultExerciseStructure) => {
+        dispatch(exerciseAddCreator(exercise));
+    };
+
+    const handleUpdateExercise = (
+        exercise: ExerciseStructure,
+        sesion: SesionStructure
+    ) => {
+        dispatch(exerciseUpdateCreator({ exercise, sesion }));
+    };
+
+    const handleDeleteExercise = (
+        exercise: ExerciseStructure,
+        sesion: SesionStructure
+    ) => {
+        dispatch(exerciseDeleteCreator({ exercise, sesion }));
+    };
     useEffect(() => {
         handleUpdateRoutinesOnDatabase();
     }, [routinesState, handleUpdateRoutinesOnDatabase]);
@@ -83,5 +112,9 @@ export function useRoutines() {
         handleAddSesion,
         handleUpdateSesion,
         handleDeleteSesion,
+        handleSetCurrentSesion,
+        handleAddExercise,
+        handleUpdateExercise,
+        handleDeleteExercise,
     };
 }
