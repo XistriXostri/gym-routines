@@ -17,6 +17,6 @@ export function createRoutineFromDatabase(
 export function createNewRoutine(): Routine {
     const id = generateId();
     const name = 'Nueva Rutina';
-    const sesions: Array<SesionStructure['id']> = [];
+    const sesions: Array<SesionStructure> = [];
     return new Routine(id, name, sesions);
 }

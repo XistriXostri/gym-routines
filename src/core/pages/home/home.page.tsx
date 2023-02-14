@@ -33,7 +33,10 @@ export default function HomePage() {
                             <p>Hay {routinesState.routines.length} rutinas</p>
                             <ul>
                                 {routinesState.routines.map((routine) => (
-                                    <Routine routine={routine}></Routine>
+                                    <Routine
+                                        routine={routine}
+                                        key={routine.id}
+                                    ></Routine>
                                 ))}
                             </ul>
                         </>
@@ -44,13 +47,13 @@ export default function HomePage() {
                         </button>
                     )}
                     {routinesState.isEditing ? (
-                        //<Link to={'/routine'}>
-                        <button id="add-routine" onClick={handleClick}>
-                            {' '}
-                            Crear nueva rutina
-                        </button>
+                        <Link to={'/routine'}>
+                            <button id="add-routine" onClick={handleClick}>
+                                {' '}
+                                Crear nueva rutina
+                            </button>
+                        </Link>
                     ) : (
-                        //</Link>
                         <></>
                     )}
                 </>
