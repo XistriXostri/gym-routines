@@ -21,7 +21,7 @@ export default function RoutinePage() {
     return (
         <div className="routinepage page">
             <div className="routinepage__edit">
-                <button>Abrir todo</button>
+                <button className="disabled">Abrir todo</button>
                 <button id="edit-sesions" onClick={handleClick}>
                     Editar
                 </button>

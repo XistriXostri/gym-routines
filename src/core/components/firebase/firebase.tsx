@@ -22,8 +22,8 @@ export function Firebase() {
                         <h1>{userState.user.name}</h1>
 
                         <img
-                            src="./assets/header/logout.svg"
-                            alt="google logo"
+                            src="./assets/action-icons/logout.svg"
+                            alt="logout"
                         />
                     </span>
                 </>
@@ -34,7 +34,7 @@ export function Firebase() {
                     className="firebase__button"
                     onClick={handleClick}
                 >
-                    <img src="./assets/header/login.svg" alt="google logo" />
+                    <img src="./assets/action-icons/login.svg" alt="login" />
                 </button>
             )}
         </>

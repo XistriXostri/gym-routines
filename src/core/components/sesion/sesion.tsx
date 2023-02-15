@@ -45,8 +45,12 @@ export function Sesion({ sesion }: { sesion: SesionStructure }) {
                             <button
                                 id="delete-sesion"
                                 onClick={() => handleDeleteSesion(sesion.id)}
+                                className="button__delete"
                             >
-                                X
+                                <img
+                                    src="./assets/action-icons/delete.svg"
+                                    alt="delete"
+                                />
                             </button>
                         </>
                     ) : (

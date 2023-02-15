@@ -17,8 +17,8 @@ body {
     width: 100%;
     height: 92px;
     display: flex;
-    justify-content: flex-start;
-    flex-direction: row-reverse;
+    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     position: fixed;
     top: 0;
@@ -35,13 +35,19 @@ body {
     margin-right: 10%;
 }
 
+.header__back {
+    margin-left: 8%;
+}
+
 .firebase__button {
     display: flex;
-    margin-right: 10%;
+    margin-right: 12%;
     color: white;
     align-items: center;
     border: none;
     background-color: transparent;
+    width: 300px;
+    justify-content: flex-end;
 }
 
 .firebase__button img {
@@ -102,7 +108,7 @@ div p {
 }
 
 .content-box {
-    padding: 25px 75px;
+    padding: 25px 40px;
     background-color: white;
     border-radius: 20px;
     border: solid 2px black;
@@ -170,16 +176,20 @@ a:visited {
     text-align: center;
 }
 
-.routine button,
-.sesion button {
-    margin-left: 30%;
+.button__delete {
+    margin-left: 10%;
     border: none;
-    background-image: linear-gradient(
+    /* background-image: linear-gradient(
         to bottom right,
         green,
         rgba(89, 241, 51, 0.767)
-    );
-    border-radius: 50%;
+    ); */
+    background-color: transparent;
+    height: 20px;
+}
+
+.button__delete img {
+    height: 25px;
 }
 
 .routinepage {
@@ -210,6 +220,10 @@ a:visited {
     padding-left: 0;
     display: flex;
     flex-direction: column;
+}
+
+.disabled {
+    display: none;
 }
 
 .sesion {
@@ -262,8 +276,8 @@ a:visited {
 }
 
 .exercise__img {
-    height: 175px;
-    width: 175px;
+    height: 160px;
+    width: 160px;
 }
 
 .exercise__img img,
@@ -275,7 +289,7 @@ a:visited {
 
 .exercise__info {
     height: 175px;
-    width: 175px;
+    width: 170px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -298,12 +312,6 @@ a:visited {
     );
     border-radius: 20px;
     text-align: center;
-}
-
-.exercise__info button {
-    margin-left: 20px;
-    border-radius: 50%;
-    background-color: rgba(240, 228, 228, 0.808);
 }
 
 hr {
@@ -338,7 +346,7 @@ select {
 
 .exercise__add {
     height: 80px;
-    width: 370px;
+    width: 100%;
     margin: 0;
     margin-left: 0;
     justify-content: center;
