@@ -15,10 +15,22 @@ export function Exercise({
 
     const showExercise = () => (
         <>
-            <p>{exercise?.name}</p>
-            <p>
-                {exercise.series}x{exercise.repetitions}
-            </p>
+            <div>
+                <div className="exercise__img">
+                    <img
+                        src={exercise.img}
+                        alt={exercise.name}
+                        className="exercise__img"
+                    />
+                </div>
+                <div className="exercise__info">
+                    <p>{exercise?.name}</p>
+                    <p>
+                        {exercise.series}x{exercise.repetitions}
+                    </p>
+                </div>
+            </div>
+            <hr />
         </>
     );
 
@@ -33,38 +45,49 @@ export function Exercise({
     const editExercise = () => {
         return (
             <>
-                <p>{exercise.name}</p>
-                <p>{exercise.muscle}</p>
-                {!routinesState.isEditing ? (
-                    <p>
-                        {exercise.series}x{exercise.repetitions}
-                    </p>
-                ) : (
-                    <p>
-                        <input
-                            type="text"
-                            name="series"
-                            id="series"
-                            value={exercise.series}
-                            onInput={handleInput}
+                <div>
+                    <div className="exercise__img">
+                        <img
+                            src={exercise.img}
+                            alt={exercise.name}
+                            className="exercise__img"
                         />
-                        x
-                        <input
-                            type="text"
-                            name="repetitions"
-                            id="repetitions"
-                            value={exercise.repetitions}
-                            onInput={handleInput}
-                        />
-                        <button
-                            onClick={() =>
-                                handleDeleteExercise(exercise, sesion)
-                            }
-                        >
-                            X
-                        </button>
-                    </p>
-                )}
+                    </div>
+                    <div className="exercise__info">
+                        <p>{exercise.name}</p>
+                        {!routinesState.isEditing ? (
+                            <p>
+                                {exercise.series}x{exercise.repetitions}
+                            </p>
+                        ) : (
+                            <p>
+                                <input
+                                    type="text"
+                                    name="series"
+                                    id="series"
+                                    value={exercise.series}
+                                    onInput={handleInput}
+                                />
+                                x
+                                <input
+                                    type="text"
+                                    name="repetitions"
+                                    id="repetitions"
+                                    value={exercise.repetitions}
+                                    onInput={handleInput}
+                                />
+                                <button
+                                    onClick={() =>
+                                        handleDeleteExercise(exercise, sesion)
+                                    }
+                                >
+                                    X
+                                </button>
+                            </p>
+                        )}
+                    </div>
+                </div>
+                <hr />
             </>
         );
     };

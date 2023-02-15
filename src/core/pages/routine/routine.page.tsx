@@ -19,13 +19,14 @@ export default function RoutinePage() {
     };
 
     return (
-        <>
-            <h1>{routinesState.currentRoutine?.name}</h1>
-            <hr />
-            <button id="edit-sesions" onClick={handleClick}>
-                Editar Sesiones
-            </button>
-            <ul>
+        <div className="routinepage page">
+            <div className="routinepage__edit">
+                <button>Abrir todo</button>
+                <button id="edit-sesions" onClick={handleClick}>
+                    Editar
+                </button>
+            </div>
+            <ul className="routinepage__list">
                 {routinesState.currentRoutine?.sesions ? (
                     <>
                         {routinesState.currentRoutine.sesions.map((sesion) => (
@@ -37,7 +38,11 @@ export default function RoutinePage() {
                 )}
                 {routinesState.isEditing ? (
                     <li>
-                        <button id="add-sesion" onClick={handleClick}>
+                        <button
+                            id="add-sesion"
+                            className="content-box sesion__add"
+                            onClick={handleClick}
+                        >
                             Añadir sesion
                         </button>
                     </li>
@@ -45,6 +50,6 @@ export default function RoutinePage() {
                     <></>
                 )}
             </ul>
-        </>
+        </div>
     );
 }

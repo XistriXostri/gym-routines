@@ -19,7 +19,10 @@ export function Sesion({ sesion }: { sesion: SesionStructure }) {
     const addExerciseButton = () => {
         return (
             <Link to="/exercise">
-                <button onClick={() => handleSetCurrentSesion(sesion)}>
+                <button
+                    onClick={() => handleSetCurrentSesion(sesion)}
+                    className="button"
+                >
                     Añadir ejercicio
                 </button>
             </Link>
@@ -27,48 +30,51 @@ export function Sesion({ sesion }: { sesion: SesionStructure }) {
     };
 
     return (
-        <li>
-            {routinesState.isEditing ? (
-                <>
-                    <input
-                        type="text"
-                        name="name"
-                        id="sesionName"
-                        value={sesion.name}
-                        onInput={handleInput}
-                    />
-                    <button
-                        id="delete-sesion"
-                        onClick={() => handleDeleteSesion(sesion.id)}
-                    >
-                        X
-                    </button>
-                </>
-            ) : (
-                <>
-                    {sesion.name} {sesion.id}{' '}
-                </>
-            )}
-            <ul>
-                {sesion.exercises ? (
-                    <>
-                        {sesion.exercises.map((exercise) => (
-                            <Exercise
-                                key={exercise.id}
-                                exercise={exercise}
-                                sesion={sesion}
+        <>
+            <li className="sesion__list">
+                <div className="content-box sesion">
+                    {routinesState.isEditing ? (
+                        <>
+                            <input
+                                type="text"
+                                name="name"
+                                id="sesionName"
+                                value={sesion.name}
+                                onInput={handleInput}
                             />
-                        ))}
-                    </>
-                ) : (
-                    <></>
-                )}
-                {routinesState.isEditing ? (
-                    <li>{addExerciseButton()}</li>
-                ) : (
-                    <></>
-                )}
-            </ul>
-        </li>
+                            <button
+                                id="delete-sesion"
+                                onClick={() => handleDeleteSesion(sesion.id)}
+                            >
+                                X
+                            </button>
+                        </>
+                    ) : (
+                        <>{sesion.name}</>
+                    )}
+                </div>
+
+                <ul className="exercise__list">
+                    {sesion.exercises ? (
+                        <>
+                            {sesion.exercises.map((exercise) => (
+                                <Exercise
+                                    key={exercise.id}
+                                    exercise={exercise}
+                                    sesion={sesion}
+                                />
+                            ))}
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                    {routinesState.isEditing ? (
+                        <li className="exercise__add">{addExerciseButton()}</li>
+                    ) : (
+                        <></>
+                    )}
+                </ul>
+            </li>
+        </>
     );
 }

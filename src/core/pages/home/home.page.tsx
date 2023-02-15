@@ -23,7 +23,7 @@ export default function HomePage() {
     return (
         <>
             {userState.user !== null ? (
-                <div className="homepage__loged">
+                <div className="homepage__loged page">
                     <ul className="homepage__list">
                         {routinesState.routines ? (
                             <>
@@ -61,7 +61,7 @@ export default function HomePage() {
                     </ul>
                 </div>
             ) : (
-                <div className="homepage__not-loged">
+                <div className="homepage__not-loged page">
                     <p>
                         Crea tus propias rutinas de entrenamiento personalizadas
                         para lograr tus objetivos de fitness en una página web
