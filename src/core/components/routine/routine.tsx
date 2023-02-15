@@ -17,9 +17,9 @@ export function Routine({ routine }: { routine: RoutineStructure }) {
     };
 
     return (
-        <li className="content-box routine">
+        <>
             {routinesState.isEditing ? (
-                <>
+                <li className="content-box routine">
                     <input
                         type="text"
                         name="name"
@@ -37,19 +37,21 @@ export function Routine({ routine }: { routine: RoutineStructure }) {
                             alt="delete"
                         />
                     </button>
-                </>
+                </li>
             ) : (
                 <>
                     <Link to={'/routine'}>
-                        <span
-                            role="button"
-                            onClick={() => handleSetCurrentRoutine(routine)}
-                        >
-                            {routine.name}
-                        </span>
+                        <li className="content-box routine">
+                            <span
+                                role="button"
+                                onClick={() => handleSetCurrentRoutine(routine)}
+                            >
+                                {routine.name}
+                            </span>
+                        </li>
                     </Link>
                 </>
             )}
-        </li>
+        </>
     );
 }
