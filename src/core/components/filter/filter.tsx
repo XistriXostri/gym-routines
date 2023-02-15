@@ -25,7 +25,7 @@ export function Filter() {
     ];
 
     return (
-        <div className="filter">
+        <>
             <form>
                 <label htmlFor="optionsFilter">
                     Filtrar por:
@@ -46,6 +46,6 @@ export function Filter() {
                 </label>
             </form>
             <button onClick={handleRemoveFilter}>Quitar filtro</button>
-        </div>
+        </>
     );
 }

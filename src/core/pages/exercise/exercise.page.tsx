@@ -17,32 +17,33 @@ export default function ExercisePage() {
 
     const Exercises = (exercises: Array<DefaultExerciseStructure>) => {
         return exercises.map((exercise) => (
-            <div key={generateId()}>
+            <li key={generateId()} className="defaultExercise">
                 <Link to="/routine">
                     <span
                         role="button"
                         onClick={() => handleAddExercise(exercise)}
                     >
-                        <p>{exercise.name}</p>
-                        <img src={exercise.img} alt={exercise.name} />
+                        <img
+                            src={exercise.img}
+                            alt={exercise.name}
+                            className="defaultExercise__img"
+                        />
                     </span>
                 </Link>
-            </div>
+            </li>
         ));
     };
 
     return (
-        <>
-            <h2 className="page__title">Exercises</h2>
-            <hr className="bar"></hr>
-            <div>
+        <div className="exercisepage page">
+            <div className="filter">
                 <Filter></Filter>
             </div>
-            <div>
+            <ul className="defaultExercise__list">
                 {exercisesFiltered.length
                     ? Exercises(exercisesFiltered)
                     : Exercises(exercises)}
-            </div>
-        </>
+            </ul>
+        </div>
     );
 }
