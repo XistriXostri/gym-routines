@@ -28,10 +28,14 @@ export function Routine({ routine }: { routine: RoutineStructure }) {
                         onInput={handleInput}
                     />
                     <button
+                        className="button__delete"
                         id="delete-routine"
                         onClick={() => handleDeleteRoutine(routine.id)}
                     >
-                        X
+                        <img
+                            src="./assets/action-icons/delete.svg"
+                            alt="delete"
+                        />
                     </button>
                 </>
             ) : (

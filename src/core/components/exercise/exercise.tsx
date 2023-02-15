@@ -77,11 +77,15 @@ export function Exercise({
                                     onInput={handleInput}
                                 />
                                 <button
+                                    className="button__delete"
                                     onClick={() =>
                                         handleDeleteExercise(exercise, sesion)
                                     }
                                 >
-                                    X
+                                    <img
+                                        src="./assets/action-icons/delete-black.svg"
+                                        alt="delete"
+                                    />
                                 </button>
                             </p>
                         )}
