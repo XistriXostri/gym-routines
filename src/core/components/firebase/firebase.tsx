@@ -19,9 +19,13 @@ export function Firebase() {
                         className="firebase__button"
                         onClick={handleClick}
                     >
-                        LogOut
+                        <h1>{userState.user.name}</h1>
+
+                        <img
+                            src="./assets/header/logout.svg"
+                            alt="google logo"
+                        />
                     </span>
-                    <h1>{userState.user.name}</h1>
                 </>
             ) : (
                 <button
@@ -30,10 +34,7 @@ export function Firebase() {
                     className="firebase__button"
                     onClick={handleClick}
                 >
-                    <img
-                        src="./assets/header/login-icon.png"
-                        alt="google logo"
-                    />
+                    <img src="./assets/header/login.svg" alt="google logo" />
                 </button>
             )}
         </>
