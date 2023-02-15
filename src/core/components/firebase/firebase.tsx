@@ -1,26 +1,18 @@
-import { SyntheticEvent } from 'react';
 import { useUser } from '../../hooks/use.user';
 
 export function Firebase() {
     const { handleLogin, handleLogout, handleRegister, userState } = useUser();
-    const handleClick = async (event: SyntheticEvent) => {
-        const action = (event.target as HTMLElement).id;
-        switch (action) {
-            case 'login':
-                const loginData = await handleLogin();
-                await handleRegister(loginData);
-                break;
-            case 'logout':
-                handleLogout();
-                break;
-        }
+    const handleClick = async () => {
+        if (userState.user) return handleLogout();
+
+        const loginData = await handleLogin();
+        await handleRegister(loginData);
     };
 
     return (
         <>
             {userState.user ? (
                 <>
-                    <h1>{userState.user.name}</h1>
                     <span
                         role="button"
                         id="logout"
@@ -29,10 +21,11 @@ export function Firebase() {
                     >
                         LogOut
                     </span>
+                    <h1>{userState.user.name}</h1>
                 </>
             ) : (
-                <span
-                    role="button"
+                <button
+                    type="button"
                     id="login"
                     className="firebase__button"
                     onClick={handleClick}
@@ -41,7 +34,7 @@ export function Firebase() {
                         src="./assets/header/login-icon.png"
                         alt="google logo"
                     />
-                </span>
+                </button>
             )}
         </>
     );

@@ -17,7 +17,7 @@ export function Routine({ routine }: { routine: RoutineStructure }) {
     };
 
     return (
-        <li>
+        <li className="content-box routine">
             {routinesState.isEditing ? (
                 <>
                     <input

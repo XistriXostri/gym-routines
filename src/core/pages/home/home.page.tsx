@@ -23,42 +23,45 @@ export default function HomePage() {
     return (
         <>
             {userState.user !== null ? (
-                <div className="homepage__login">
-                    {routinesState.routines ? (
-                        <>
-                            <h1>Mis rutinas</h1>
-                            <button id="edit-routines" onClick={handleClick}>
-                                Editar Rutinas
-                            </button>
-                            <p>Hay {routinesState.routines.length} rutinas</p>
-                            <ul>
+                <div className="homepage__loged">
+                    <ul className="homepage__list">
+                        {routinesState.routines ? (
+                            <>
                                 {routinesState.routines.map((routine) => (
                                     <Routine
                                         routine={routine}
                                         key={routine.id}
                                     ></Routine>
                                 ))}
-                            </ul>
-                        </>
-                    ) : (
-                        <button id="add-routine" onClick={handleClick}>
-                            {' '}
-                            Crea tu primera rutina
-                        </button>
-                    )}
-                    {routinesState.isEditing ? (
-                        <Link to={'/routine'}>
-                            <button id="add-routine" onClick={handleClick}>
-                                {' '}
-                                Crear nueva rutina
-                            </button>
-                        </Link>
-                    ) : (
-                        <></>
-                    )}
+                                <li className="content-box">
+                                    <button
+                                        id="edit-routines"
+                                        onClick={handleClick}
+                                        className="button"
+                                    >
+                                        Editar Rutinas
+                                    </button>
+                                </li>
+                            </>
+                        ) : (
+                            <></>
+                        )}
+                        <li className="content-box routine__add">
+                            <Link to={'/routine'}>
+                                <button
+                                    id="add-routine"
+                                    className="button"
+                                    onClick={handleClick}
+                                >
+                                    {' '}
+                                    Crear nueva rutina
+                                </button>
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             ) : (
-                <div className="homepage__logout">
+                <div className="homepage__not-loged">
                     <p>
                         Crea tus propias rutinas de entrenamiento personalizadas
                         para lograr tus objetivos de fitness en una página web
