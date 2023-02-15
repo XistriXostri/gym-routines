@@ -1,0 +1,369 @@
+html {
+    top: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Space Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    min-height: 1028px;
+    background-color: rgb(53, 53, 53);
+}
+
+.header {
+    width: 100%;
+    height: 92px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background-color: rgba(15, 15, 15, 0.938);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    left: 0;
+}
+
+.header h1 {
+    color: white;
+    font-size: 1em;
+    display: flex;
+    height: auto;
+    margin-right: 10%;
+}
+
+.firebase__button {
+    display: flex;
+    margin-right: 10%;
+    color: white;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+}
+
+.firebase__button img {
+    height: 50px;
+}
+
+#root {
+    min-height: 1028px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+}
+
+div p {
+    display: flex;
+    margin-top: 200px;
+    text-align: center;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.1em;
+    mix-blend-mode: color-dodge;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.page {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+    background-position: center;
+    min-height: 1028px;
+    margin-top: 0;
+    display: flex;
+    background-attachment: fixed;
+}
+
+.homepage__not-loged {
+    background-image: linear-gradient(rgba(5, 7, 12, 0.6), rgba(5, 7, 12, 0.6)),
+        url('../public/assets/background-images/home-not-loged.jpg');
+}
+
+.homepage__loged {
+    background-image: linear-gradient(rgba(5, 7, 12, 0.6), rgba(5, 7, 12, 0.6)),
+        url('../public/assets/background-images/home-loged2.jpg');
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage__list {
+    margin-top: 150px;
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-box {
+    padding: 25px 75px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 2px black;
+    margin-top: 5%;
+    margin-left: 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    text-align: center;
+
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.routine {
+    background-color: rgba(89, 241, 51, 0.945);
+    background-image: linear-gradient(
+        to bottom right,
+        green,
+        rgba(89, 241, 51, 0.945)
+    );
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.button {
+    width: 300px;
+    border: none;
+    background-color: transparent;
+    font-family: 'Space Mono', monospace;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.routine__add {
+    background-color: black;
+}
+.routine__add button {
+    color: white;
+}
+
+.routine input,
+.sesion input {
+    border: none;
+    color: white;
+    background-image: linear-gradient(
+        to bottom right,
+        green,
+        rgba(89, 241, 51, 0.767)
+    );
+    border-radius: 20px;
+    font-family: 'Space Mono', monospace;
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+}
+
+.routine button,
+.sesion button {
+    margin-left: 30%;
+    border: none;
+    background-image: linear-gradient(
+        to bottom right,
+        green,
+        rgba(89, 241, 51, 0.767)
+    );
+    border-radius: 50%;
+}
+
+.routinepage {
+    background-image: linear-gradient(rgba(5, 7, 12, 0.6), rgba(5, 7, 12, 0.6)),
+        url('../public/assets/background-images/rutines.jpg');
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.routinepage__edit {
+    display: flex;
+    margin-top: 120px;
+    align-content: space-between;
+}
+.routinepage__edit button {
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 150px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.801);
+    height: 30px;
+}
+
+.routinepage__list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sesion {
+    background-color: rgba(89, 241, 51, 0.945);
+    background-image: linear-gradient(
+        to bottom right,
+        green,
+        rgba(89, 241, 51, 0.945)
+    );
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    width: 260px;
+    margin-top: 0;
+}
+
+.sesion__list {
+    background-color: rgba(255, 255, 255, 0.801);
+    top: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.sesion__add {
+    width: 100%;
+}
+
+.exercise__list {
+    list-style: none;
+    padding-inline-start: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.exercise__list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.exercise__list li div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 200px;
+}
+
+.exercise__img {
+    height: 175px;
+    width: 175px;
+}
+
+.exercise__img img,
+.defaultExercise__img {
+    object-fit: contain;
+    border: 1px black solid;
+    background-color: #ffffff;
+}
+
+.exercise__info {
+    height: 175px;
+    width: 175px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise__info p {
+    margin-top: 0;
+    color: black;
+    mix-blend-mode: normal;
+}
+
+.exercise__info input {
+    width: 40px;
+    border: none;
+    background-image: linear-gradient(
+        to bottom right,
+        rgb(202, 200, 200),
+        rgba(255, 255, 255, 0.945)
+    );
+    border-radius: 20px;
+    text-align: center;
+}
+
+.exercise__info button {
+    margin-left: 20px;
+    border-radius: 50%;
+    background-color: rgba(240, 228, 228, 0.808);
+}
+
+hr {
+    border: 1px solid rgba(0, 0, 0, 0.527);
+    margin: 0;
+    width: 100%;
+}
+
+.filter {
+    margin-top: 100px;
+    position: fixed;
+    background-color: #ada9a99d;
+    width: 400px;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.filter form {
+    margin-bottom: 10px;
+}
+
+.filter button,
+select {
+    border: none;
+    text-align: center;
+    background-color: rgba(175, 164, 164, 0.493);
+    border-radius: 20px;
+}
+
+.exercise__add {
+    height: 80px;
+    width: 370px;
+    margin: 0;
+    margin-left: 0;
+    justify-content: center;
+}
+.defaultExercise__list {
+    columns: 2;
+    list-style: none;
+    padding-inline-start: 0;
+    margin-top: 200px;
+}
+.defaultExercise {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.defaultExercise__img {
+    height: 200px;
+    width: 200px;
+}
+
+.exercisepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(rgba(5, 7, 12, 0.6), rgba(5, 7, 12, 0.6)),
+        url('../public/assets/background-images/exercises.jpg');
+}
