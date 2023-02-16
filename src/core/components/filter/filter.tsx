@@ -1,9 +1,7 @@
-import { useContext } from 'react';
-import { ExerciseContext } from '../../context/exercises/exercise.context';
+import { useDefaultExercises } from '../../hooks/use.exercises';
 
 export function Filter() {
-    const { handleUpdateFilter, handleRemoveFilter } =
-        useContext(ExerciseContext);
+    const { handleUpdateFilter, handleRemoveFilter } = useDefaultExercises();
 
     const handleFilter = (event: React.FormEvent<HTMLSelectElement>) => {
         const actualFilterOption = event.currentTarget.value;

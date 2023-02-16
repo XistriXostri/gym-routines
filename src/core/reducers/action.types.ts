@@ -29,3 +29,9 @@ export const exerciseActionTypes = {
     delete: 'exercise@delete',
     setCurrent: 'exercise@setCurrent',
 };
+
+export const defaultExerciseActionType = {
+    load: 'defaultExercise@load',
+    setFilter: 'defaultExercise@setFilter',
+    removeFilter: 'defaultExercise@removeFilter',
+};

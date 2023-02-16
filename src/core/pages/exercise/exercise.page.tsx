@@ -1,15 +1,14 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Filter } from '../../components/filter/filter';
-import { ExerciseContext } from '../../context/exercises/exercise.context';
 import { generateId } from '../../helpers/generate-id';
+import { useDefaultExercises } from '../../hooks/use.exercises';
 import { useRoutines } from '../../hooks/use.routines';
 import { DefaultExerciseStructure } from '../../models/exercise/exercise';
 
 export default function ExercisePage() {
-    const { exercises, handleLoad, exercisesFiltered } =
-        useContext(ExerciseContext);
     const { handleAddExercise } = useRoutines();
+    const { defaultExercisesState, handleLoad } = useDefaultExercises();
 
     useEffect(() => {
         handleLoad();
@@ -40,9 +39,9 @@ export default function ExercisePage() {
                 <Filter></Filter>
             </div>
             <ul className="defaultExercise__list">
-                {exercisesFiltered.length
-                    ? Exercises(exercisesFiltered)
-                    : Exercises(exercises)}
+                {defaultExercisesState.defaultExercisesFiltereds.length
+                    ? Exercises(defaultExercisesState.defaultExercisesFiltereds)
+                    : Exercises(defaultExercisesState.defaultExercises)}
             </ul>
         </div>
     );

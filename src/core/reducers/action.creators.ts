@@ -7,6 +7,7 @@ import { RoutineStructure } from '../models/routine/routine.model';
 import { SesionStructure } from '../models/sesion/sesion';
 import { UserStructure } from '../models/user/user';
 import {
+    defaultExerciseActionType,
     exerciseActionTypes,
     routineActionTypes,
     sesionActionTypes,
@@ -76,4 +77,16 @@ export const exerciseUpdateCreator = createAction<ExercisePayload>(
 
 export const exerciseDeleteCreator = createAction<ExercisePayload>(
     exerciseActionTypes.delete
+);
+
+export const defaultExerciseLoadCreator = createAction<
+    Array<DefaultExerciseStructure>
+>(defaultExerciseActionType.load);
+
+export const defaultExerciseSetFilterCreator = createAction<
+    DefaultExerciseStructure['muscle']
+>(defaultExerciseActionType.setFilter);
+
+export const defaultExerciseRemoveFilterCreator = createAction(
+    defaultExerciseActionType.removeFilter
 );
