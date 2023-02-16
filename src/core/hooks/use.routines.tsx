@@ -26,8 +26,6 @@ import {
 } from '../models/exercise/exercise';
 
 export function useRoutines() {
-    //const repoRoutines = useMemo(() => new RoutinesRepository(), []);
-
     const userId = useSelector((state: RootState) => state.user.user?.id);
     const routinesState = useSelector((state: RootState) => state.routines);
 
