@@ -10,7 +10,7 @@ export function Routine({ routine }: { routine: RoutineStructure }) {
         handleUpdateRoutine,
         handleSetCurrentRoutine,
     } = useRoutines();
-    //por testear 15-16
+
     const handleInput = (event: SyntheticEvent) => {
         const element = event.target as HTMLFormElement;
         handleUpdateRoutine({ ...routine, [element.name]: element.value });

@@ -19,7 +19,7 @@ import {
     sesionUpdateCreator,
 } from './action.creators';
 
-type InitialRoutinesState = {
+export type InitialRoutinesState = {
     routines: Array<RoutineStructure>;
     currentRoutine: RoutineStructure | null;
     currentSesion: SesionStructure | null;
