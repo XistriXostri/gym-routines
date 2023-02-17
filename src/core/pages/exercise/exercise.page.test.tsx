@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { useDefaultExercises } from '../../hooks/use.exercises';
-import { useRoutines } from '../../hooks/use.routines';
+import { useDefaultExercises } from '../../hooks/exercises/use.exercises';
+import { useRoutines } from '../../hooks/routines/use.routines';
 import {
     mockDefaultExercises,
     mockDefaultExercisesWithFilter,
@@ -13,8 +13,8 @@ import { mockHandleAddExercise } from '../../mocks/use.routines.mock';
 import { mockUser } from '../../mocks/user.mock';
 import ExercisePage from './exercise.page';
 
-jest.mock('../../hooks/use.routines');
-jest.mock('../../hooks/use.exercises');
+jest.mock('../../hooks/routines/use.routines');
+jest.mock('../../hooks/exercises/use.exercises');
 
 const mockHandleLoad = jest.fn();
 

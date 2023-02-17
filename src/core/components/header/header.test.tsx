@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { useRoutines } from '../../hooks/use.routines';
-import { useUser } from '../../hooks/use.user';
+import { useRoutines } from '../../hooks/routines/use.routines';
+import { useUser } from '../../hooks/user/use.user';
 import { mockDefaultExercises } from '../../mocks/default.exercises.mock';
 import {
     mockRoutinesEditing,
@@ -13,8 +13,8 @@ import { mockHandleEditMode } from '../../mocks/use.routines.mock';
 import { mockEmptyUser, mockUser, userMock } from '../../mocks/user.mock';
 import { Header } from './header';
 
-jest.mock('../../hooks/use.user');
-jest.mock('../../hooks/use.routines');
+jest.mock('../../hooks/user/use.user');
+jest.mock('../../hooks/routines/use.routines');
 
 describe('Header', () => {
     describe('when there isnt any user logged in', () => {

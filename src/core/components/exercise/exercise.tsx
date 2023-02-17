@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
+import { useRoutines } from '../../hooks/routines/use.routines';
 import { ExerciseStructure } from '../../models/exercise/exercise';
 import { SesionStructure } from '../../models/sesion/sesion';
-import { useRoutines } from '../../hooks/use.routines';
 
 export function Exercise({
     exercise,

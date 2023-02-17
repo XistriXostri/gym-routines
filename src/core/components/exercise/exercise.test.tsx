@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { useRoutines } from '../../hooks/use.routines';
+import { useRoutines } from '../../hooks/routines/use.routines';
 import { mockDefaultExercises } from '../../mocks/default.exercises.mock';
 import { exerciseMock } from '../../mocks/exercise.mock';
 import {
@@ -18,7 +18,7 @@ import {
 import { mockUser } from '../../mocks/user.mock';
 import { Exercise } from './exercise';
 
-jest.mock('../../hooks/use.routines');
+jest.mock('../../hooks/routines/use.routines');
 
 describe('Exercise', () => {
     beforeEach(() => {

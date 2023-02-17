@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { Sesion } from '../../components/sesion/sesion';
-import { useRoutines } from '../../hooks/use.routines';
+import { useRoutines } from '../../hooks/routines/use.routines';
 
 export default function RoutinePage() {
     const { routinesState, handleEditMode, handleAddSesion } = useRoutines();

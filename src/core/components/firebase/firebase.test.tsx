@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { useUser } from '../../hooks/use.user';
+import { useUser } from '../../hooks/user/use.user';
 import { mockDefaultExercises } from '../../mocks/default.exercises.mock';
 import { mockRoutinesNotEditing } from '../../mocks/routines.mock';
 import { createPreloadedState, createStoreMock } from '../../mocks/store.mock';
 import { mockEmptyUser, mockUser, userMock } from '../../mocks/user.mock';
 import { Firebase } from './firebase';
 
-jest.mock('../../hooks/use.user');
+jest.mock('../../hooks/user/use.user');
 const mockHandleLogin = jest.fn();
 const mockHandleLogout = jest.fn();
 const mockHandleRegister = jest.fn();

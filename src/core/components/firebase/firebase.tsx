@@ -1,4 +1,4 @@
-import { useUser } from '../../hooks/use.user';
+import { useUser } from '../../hooks/user/use.user';
 
 export function Firebase() {
     const { handleLogin, handleLogout, handleRegister, userState } = useUser();

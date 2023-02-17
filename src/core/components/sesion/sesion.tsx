@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { useRoutines } from '../../hooks/use.routines';
+import { useRoutines } from '../../hooks/routines/use.routines';
 import { SesionStructure } from '../../models/sesion/sesion';
 import { Exercise } from '../exercise/exercise';
 
@@ -48,7 +48,7 @@ export function Sesion({ sesion }: { sesion: SesionStructure }) {
                 </div>
 
                 <ul className="exercise__list">
-                    {sesion.exercises ? (
+                    {sesion.exercises?.length ? (
                         <>
                             {sesion.exercises.map((exercise) => (
                                 <Exercise
@@ -60,7 +60,9 @@ export function Sesion({ sesion }: { sesion: SesionStructure }) {
                         </>
                     ) : (
                         <li>
-                            <div>No hay ejercicios</div>
+                            <div data-testid="noExerciesLabel">
+                                No hay ejercicios
+                            </div>
                         </li>
                     )}
                     {routinesState.isEditing ? (

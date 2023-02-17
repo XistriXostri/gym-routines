@@ -1,23 +1,35 @@
-import { auth } from '../../config';
+import { auth } from '../../../config';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import {
     createUserFromDatabase,
     createUserFromGoogleUser,
-} from '../models/user/user.factory';
-import { useMemo } from 'react';
-import { UsersRepository } from '../services/repository/repo.user';
-import { UserStructure, UserStructureOnDatabase } from '../models/user/user';
-import { RootState } from '../store/store';
+} from '../../models/user/user.factory';
+import { useEffect, useMemo } from 'react';
+import { UsersRepository } from '../../services/repository/repo.user';
+import { UserStructure, UserStructureOnDatabase } from '../../models/user/user';
+import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     routinesLoadCreator,
     userRemoveCreator,
     userSetCreator,
-} from '../reducers/action.creators';
+} from '../../reducers/action.creators';
+import { useLocalStorage } from '../localStorage/use.local.storage';
 
 export type LoginData = { user: UserStructure; token: string };
 export function useUser() {
     const repoUsers = useMemo(() => new UsersRepository(), []);
+
+    const { getItem, setItem } = useLocalStorage();
+
+    useEffect(() => {
+        const user = getItem('user');
+        if (user) {
+            dispatch(userSetCreator(JSON.parse(user)));
+            handleRegister(JSON.parse(user));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const userState = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
@@ -28,8 +40,12 @@ export function useUser() {
         const userCredentials = await signInWithPopup(auth, provider);
         const { user } = userCredentials;
 
+        //Para conseguir el token
+        //const token = await user.getIdToken();
+
         const userFromLogin = createUserFromGoogleUser(user);
         dispatch(userSetCreator(userFromLogin));
+        setItem('user', JSON.stringify(userFromLogin));
 
         return userFromLogin;
     };
@@ -38,6 +54,7 @@ export function useUser() {
         signOut(auth);
         dispatch(userRemoveCreator());
         dispatch(routinesLoadCreator([]));
+        setItem('user', '');
     };
 
     //TODO: fix non-serializable value alert

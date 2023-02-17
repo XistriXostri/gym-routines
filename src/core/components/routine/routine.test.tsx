@@ -11,10 +11,10 @@ import {
     routineMock,
 } from '../../mocks/routines.mock';
 import { mockDefaultExercises } from '../../mocks/default.exercises.mock';
-import { useRoutines } from '../../hooks/use.routines';
 import userEvent from '@testing-library/user-event';
+import { useRoutines } from '../../hooks/routines/use.routines';
 
-jest.mock('../../hooks/use.routines');
+jest.mock('../../hooks/routines/use.routines');
 
 describe('Routine', () => {
     const mockHandleDeleteRoutine = jest.fn();

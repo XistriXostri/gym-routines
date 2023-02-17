@@ -1,4 +1,4 @@
-import { useDefaultExercises } from '../../hooks/use.exercises';
+import { useDefaultExercises } from '../../hooks/exercises/use.exercises';
 
 export function Filter() {
     const { handleUpdateFilter, handleRemoveFilter } = useDefaultExercises();

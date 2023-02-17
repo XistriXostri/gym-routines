@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { useRoutines } from '../../hooks/use.routines';
+import { useRoutines } from '../../hooks/routines/use.routines';
 import { RoutineStructure } from '../../models/routine/routine.model';
 
 export function Routine({ routine }: { routine: RoutineStructure }) {

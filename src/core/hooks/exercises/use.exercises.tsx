@@ -4,9 +4,9 @@ import {
     defaultExerciseLoadCreator,
     defaultExerciseRemoveFilterCreator,
     defaultExerciseSetFilterCreator,
-} from '../reducers/action.creators';
-import { ExerciseRepo } from '../services/repository/repo.exercises';
-import { RootState } from '../store/store';
+} from '../../reducers/action.creators';
+import { ExerciseRepo } from '../../services/repository/repo.exercises';
+import { RootState } from '../../store/store';
 
 export function useDefaultExercises() {
     const repo = useMemo(() => new ExerciseRepo(), []);

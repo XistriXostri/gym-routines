@@ -1,8 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { useRoutines } from '../../hooks/use.routines';
-import { useUser } from '../../hooks/use.user';
+import { useRoutines } from '../../hooks/routines/use.routines';
 import { mockDefaultExercises } from '../../mocks/default.exercises.mock';
 import {
     mockRoutinesEditing,
@@ -10,15 +9,13 @@ import {
 } from '../../mocks/routines.mock';
 import { createPreloadedState, createStoreMock } from '../../mocks/store.mock';
 import {
-    mockHandleAddRoutine,
     mockHandleAddSesion,
     mockHandleEditMode,
 } from '../../mocks/use.routines.mock';
-import { mockEmptyUser, mockUser, userMock } from '../../mocks/user.mock';
-import HomePage from '../home/home.page';
+import { mockUser } from '../../mocks/user.mock';
 import RoutinePage from './routine.page';
 
-jest.mock('../../hooks/use.routines');
+jest.mock('../../hooks/routines/use.routines');
 
 describe('RoutinePage', () => {
     describe('when is not editing', () => {

@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { useRoutines } from '../../hooks/use.routines';
+import { useRoutines } from '../../hooks/routines/use.routines';
 import { mockDefaultExercises } from '../../mocks/default.exercises.mock';
 import {
     mockRoutinesEditing,
@@ -22,7 +22,7 @@ import {
 import { mockUser } from '../../mocks/user.mock';
 import { Sesion } from './sesion';
 
-jest.mock('../../hooks/use.routines');
+jest.mock('../../hooks/routines/use.routines');
 
 describe('Sesion', () => {
     beforeEach(() => {
@@ -124,8 +124,8 @@ describe('Sesion', () => {
                 </Provider>,
                 { wrapper: MemoryRouter }
             );
-            const sesionName = screen.getByText('mockSesionName');
-            expect(sesionName).toBeInTheDocument();
+            const text = screen.getByTestId('noExerciesLabel');
+            expect(text).toBeInTheDocument();
         });
     });
 });

@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Filter } from '../../components/filter/filter';
 import { generateId } from '../../helpers/generate-id';
-import { useDefaultExercises } from '../../hooks/use.exercises';
-import { useRoutines } from '../../hooks/use.routines';
+import { useDefaultExercises } from '../../hooks/exercises/use.exercises';
+import { useRoutines } from '../../hooks/routines/use.routines';
 import { DefaultExerciseStructure } from '../../models/exercise/exercise';
 
 export default function ExercisePage() {
