@@ -38,11 +38,7 @@ export function useUser() {
         const provider = new GoogleAuthProvider();
 
         const userCredentials = await signInWithPopup(auth, provider);
-        const { user } = userCredentials;
-
-        //Para conseguir el token
-        //const token = await user.getIdToken();
-
+        const user = userCredentials.user;
         const userFromLogin = createUserFromGoogleUser(user);
         dispatch(userSetCreator(userFromLogin));
         setItem('user', JSON.stringify(userFromLogin));
@@ -69,12 +65,6 @@ export function useUser() {
                 }
 
                 const userDatafromDataBase = data as UserStructureOnDatabase;
-
-                const userDataLoaded = createUserFromDatabase(
-                    userDatafromDataBase,
-                    userData.id
-                );
-                console.log('handleLogin:', userDataLoaded);
 
                 const routines = userDatafromDataBase.routines;
                 dispatch(routinesLoadCreator(routines));

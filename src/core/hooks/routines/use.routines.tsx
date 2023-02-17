@@ -56,8 +56,6 @@ export function useRoutines() {
 
     const handleUpdateRoutinesOnDatabase = useCallback(() => {
         if (!routinesState.routines) return;
-        //TODO: aqui tengo un problema en el que actualiza la BD antes de actualizar la rutina
-        //TODO: esto lo podria solucionar con un isLoading
         if (!routinesState.routines.length) return;
         const userReference = ref(dataBase, 'users/' + userId + '/routines/');
         set(userReference, routinesState.routines);

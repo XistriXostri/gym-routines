@@ -10,7 +10,6 @@ export default function RoutinePage() {
         switch (action) {
             case 'add-sesion':
                 handleAddSesion();
-                console.log('add sesion');
                 break;
             case 'edit-sesions':
                 handleEditMode();

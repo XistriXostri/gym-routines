@@ -100,8 +100,6 @@ describe('Sesion', () => {
             expect(exerciseName).toBeInTheDocument();
         });
     });
-
-    // TODO: no se como testear que no se reendericen ejercicios
     describe('when it doesnt have any exercise', () => {
         const mockPreloadState = createPreloadedState(
             mockUser,
