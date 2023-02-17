@@ -2,13 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
     defaultExerciseReducer,
     InitialDefaultExercisesState,
-} from '../core/reducers/default.exercises.reducer';
+} from '../reducers/default.exercises.reducer';
 import {
     InitialRoutinesState,
     routinesReducer,
-} from '../core/reducers/routines.reducer';
-import { InitialUserState, userReducer } from '../core/reducers/user.reducer';
-import { RootState } from '../core/store/store';
+} from '../reducers/routines.reducer';
+import { InitialUserState, userReducer } from '../reducers/user.reducer';
+import { RootState } from '../store/store';
 
 export const createStoreMock = (preloadedState: Partial<RootState>) => {
     const mockStore = configureStore({

@@ -1,10 +1,10 @@
-import { InitialUserState } from '../core/reducers/user.reducer';
+import { InitialUserState } from '../reducers/user.reducer';
 
-export const usermock = {
+export const userMock = {
     id: 'mockUserId',
     name: 'mockUserName',
     photo: 'mockUserPhoto',
     email: 'mockUserEmail',
 };
 export const mockEmptyUser: InitialUserState = { user: null };
-export const mockUser: InitialUserState = { user: usermock };
+export const mockUser: InitialUserState = { user: userMock };
