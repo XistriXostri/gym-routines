@@ -38,6 +38,7 @@ export function useRoutines() {
     };
 
     const handleDeleteRoutine = (id: RoutineStructure['id']) => {
+        debugger;
         dispatch(routinesDeleteCreator(id));
     };
 
