@@ -50,8 +50,6 @@ describe('Routine', () => {
         expect(routineButton).toHaveTextContent('mockRoutinename');
         fireEvent.click(routineButton);
         expect(mockHandleSetCurrentRoutine).toHaveBeenCalled();
-        //Para imprimir lo que renderiza:
-        //screen.debug();
     });
 
     test('When is editing Routines shows inputs and delete button', () => {
