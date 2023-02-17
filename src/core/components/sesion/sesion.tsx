@@ -16,18 +16,6 @@ export function Sesion({ sesion }: { sesion: SesionStructure }) {
         const element = event.target as HTMLFormElement;
         handleUpdateSesion({ ...sesion, [element.name]: element.value });
     };
-    const addExerciseButton = () => {
-        return (
-            <Link to="/exercise">
-                <button
-                    onClick={() => handleSetCurrentSesion(sesion)}
-                    className="button"
-                >
-                    Añadir ejercicio
-                </button>
-            </Link>
-        );
-    };
 
     return (
         <>
@@ -39,6 +27,7 @@ export function Sesion({ sesion }: { sesion: SesionStructure }) {
                                 type="text"
                                 name="name"
                                 id="sesionName"
+                                data-testid="sesionName"
                                 value={sesion.name}
                                 onInput={handleInput}
                             />
@@ -70,10 +59,26 @@ export function Sesion({ sesion }: { sesion: SesionStructure }) {
                             ))}
                         </>
                     ) : (
-                        <></>
+                        <li>
+                            <div>No hay ejercicios</div>
+                        </li>
                     )}
                     {routinesState.isEditing ? (
-                        <li className="exercise__add">{addExerciseButton()}</li>
+                        <>
+                            <li className="exercise__add">
+                                <Link to="/exercise">
+                                    <button
+                                        onClick={() =>
+                                            handleSetCurrentSesion(sesion)
+                                        }
+                                        data-testid="addExercise"
+                                        className="button"
+                                    >
+                                        Añadir ejercicio
+                                    </button>
+                                </Link>
+                            </li>
+                        </>
                     ) : (
                         <></>
                     )}
