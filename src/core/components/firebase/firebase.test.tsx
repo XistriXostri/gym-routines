@@ -46,7 +46,7 @@ describe('App', () => {
 
             const loginButton = screen.queryByRole('button');
             expect(loginButton).toBeInTheDocument();
-            fireEvent.click(loginButton);
+            fireEvent.click(loginButton as Element);
             expect(mockHandleLogin).toBeCalled();
         });
     });
@@ -77,7 +77,7 @@ describe('App', () => {
 
             const logoutButton = screen.queryByRole('button');
             expect(logoutButton).toBeInTheDocument();
-            fireEvent.click(logoutButton);
+            fireEvent.click(logoutButton as Element);
             expect(mockHandleLogout).toBeCalled();
         });
     });
