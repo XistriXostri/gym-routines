@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useUser } from '../../hooks/use.user';
+import { useUser } from '../../hooks/user/use.user';
 import ExercisePage from '../../pages/exercise/exercise.page';
 import HomePage from '../../pages/home/home.page';
 import RoutinePage from '../../pages/routine/routine.page';

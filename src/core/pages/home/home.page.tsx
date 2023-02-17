@@ -1,8 +1,8 @@
 import { SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Routine } from '../../components/routine/routine';
-import { useRoutines } from '../../hooks/use.routines';
-import { useUser } from '../../hooks/use.user';
+import { useRoutines } from '../../hooks/routines/use.routines';
+import { useUser } from '../../hooks/user/use.user';
 
 export default function HomePage() {
     const { userState } = useUser();

@@ -1,4 +1,4 @@
-import { useDefaultExercises } from '../../hooks/use.exercises';
+import { useDefaultExercises } from '../../hooks/exercises/use.exercises';
 
 export function Filter() {
     const { handleUpdateFilter, handleRemoveFilter } = useDefaultExercises();
@@ -7,8 +7,6 @@ export function Filter() {
         const actualFilterOption = event.currentTarget.value;
         handleUpdateFilter(actualFilterOption);
     };
-
-    //TODO: Simplificar el filtro haciendo que haga un GET filtrando los datos
 
     const muscleOptions = [
         'biceps',

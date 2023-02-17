@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { UserStructure } from '../models/user/user';
 import { userRemoveCreator, userSetCreator } from './action.creators';
 
-type InitialUserState = {
+export type InitialUserState = {
     user: UserStructure | null;
 };
 

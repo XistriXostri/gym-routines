@@ -6,12 +6,12 @@ import {
     defaultExerciseSetFilterCreator,
 } from './action.creators';
 
-type InitialUserState = {
+export type InitialDefaultExercisesState = {
     defaultExercises: Array<DefaultExerciseStructure>;
     defaultExercisesFiltereds: Array<DefaultExerciseStructure>;
 };
 
-const initialState: InitialUserState = {
+const initialState: InitialDefaultExercisesState = {
     defaultExercises: [],
     defaultExercisesFiltereds: [],
 };

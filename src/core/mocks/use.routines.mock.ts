@@ -1,0 +1,12 @@
+export const mockHandleAddRoutine = jest.fn();
+export const mockHandleDeleteRoutine = jest.fn();
+export const mockHandleUpdateRoutine = jest.fn();
+export const mockHandleEditMode = jest.fn();
+export const mockHandleSetCurrentRoutine = jest.fn();
+export const mockHandleAddSesion = jest.fn();
+export const mockHandleUpdateSesion = jest.fn();
+export const mockHandleDeleteSesion = jest.fn();
+export const mockHandleSetCurrentSesion = jest.fn();
+export const mockHandleAddExercise = jest.fn();
+export const mockHandleUpdateExercise = jest.fn();
+export const mockHandleDeleteExercise = jest.fn();

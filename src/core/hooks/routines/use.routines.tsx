@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RoutineStructure } from '../models/routine/routine.model';
-import { createNewRoutine } from '../models/routine/routine.factory';
+import { RoutineStructure } from '../../models/routine/routine.model';
+import { createNewRoutine } from '../../models/routine/routine.factory';
 import {
     exerciseAddCreator,
     exerciseDeleteCreator,
@@ -14,16 +14,16 @@ import {
     sesionDeleteCreator,
     sesionSetCurrentCreator,
     sesionUpdateCreator,
-} from '../reducers/action.creators';
-import { RootState } from '../store/store';
-import { dataBase } from '../../config';
+} from '../../reducers/action.creators';
+import { RootState } from '../../store/store';
+import { dataBase } from '../../../config';
 import { ref, set } from 'firebase/database';
 import { useCallback, useEffect } from 'react';
-import { Sesion, SesionStructure } from '../models/sesion/sesion';
+import { Sesion, SesionStructure } from '../../models/sesion/sesion';
 import {
     DefaultExerciseStructure,
     ExerciseStructure,
-} from '../models/exercise/exercise';
+} from '../../models/exercise/exercise';
 
 export function useRoutines() {
     const userId = useSelector((state: RootState) => state.user.user?.id);
@@ -38,6 +38,7 @@ export function useRoutines() {
     };
 
     const handleDeleteRoutine = (id: RoutineStructure['id']) => {
+        debugger;
         dispatch(routinesDeleteCreator(id));
     };
 
@@ -55,8 +56,6 @@ export function useRoutines() {
 
     const handleUpdateRoutinesOnDatabase = useCallback(() => {
         if (!routinesState.routines) return;
-        //TODO: aqui tengo un problema en el que actualiza la BD antes de actualizar la rutina
-        //TODO: esto lo podria solucionar con un isLoading
         if (!routinesState.routines.length) return;
         const userReference = ref(dataBase, 'users/' + userId + '/routines/');
         set(userReference, routinesState.routines);

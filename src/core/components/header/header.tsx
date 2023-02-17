@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useRoutines } from '../../hooks/use.routines';
-import { useUser } from '../../hooks/use.user';
+import { useRoutines } from '../../hooks/routines/use.routines';
+import { useUser } from '../../hooks/user/use.user';
 import { Firebase } from '../firebase/firebase';
 
 export function Header() {

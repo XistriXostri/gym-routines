@@ -4,19 +4,19 @@ import { MemoryRouter } from 'react-router-dom';
 import { useRoutines } from '../../hooks/routines/use.routines';
 import { useUser } from '../../hooks/user/use.user';
 import { mockDefaultExercises } from '../../mocks/default.exercises.mock';
-import {
-    mockRoutinesEditing,
-    mockRoutinesNotEditing,
-} from '../../mocks/routines.mock';
+import { mockRoutinesNotEditing } from '../../mocks/routines.mock';
 import { createPreloadedState, createStoreMock } from '../../mocks/store.mock';
-import { mockHandleEditMode } from '../../mocks/use.routines.mock';
+import {
+    mockHandleAddRoutine,
+    mockHandleEditMode,
+} from '../../mocks/use.routines.mock';
 import { mockEmptyUser, mockUser, userMock } from '../../mocks/user.mock';
-import { Header } from './header';
+import HomePage from './home.page';
 
 jest.mock('../../hooks/user/use.user');
 jest.mock('../../hooks/routines/use.routines');
 
-describe('Header', () => {
+describe('HomePage', () => {
     describe('when there isnt any user logged in', () => {
         const mockPreloadStateEmptyUser = createPreloadedState(
             mockEmptyUser,
@@ -26,7 +26,7 @@ describe('Header', () => {
 
         const mockStoreEmptyUser = createStoreMock(mockPreloadStateEmptyUser);
 
-        test('does not display back button', () => {
+        test('it renders', () => {
             (useUser as jest.Mock).mockReturnValue({
                 userState: {
                     user: null,
@@ -34,21 +34,22 @@ describe('Header', () => {
             });
 
             (useRoutines as jest.Mock).mockReturnValue({
-                routinesState: mockRoutinesEditing,
+                routinesState: mockRoutinesNotEditing,
                 handleEditMode: mockHandleEditMode,
+                handleAddRoutine: mockHandleAddRoutine,
             });
 
             render(
                 <Provider store={mockStoreEmptyUser}>
-                    <Header />
+                    <HomePage />
                 </Provider>,
                 { wrapper: MemoryRouter }
             );
-            const backButtonElement = screen.queryByRole('link');
-            expect(backButtonElement).toBeNull();
+            const text = screen.getByText(/Crea/i);
+            expect(text).toBeInTheDocument();
         });
     });
-    describe('when press back button', () => {
+    describe('when the user is logged it', () => {
         const mockPreloadState = createPreloadedState(
             mockUser,
             mockRoutinesNotEditing,
@@ -56,7 +57,7 @@ describe('Header', () => {
         );
         const mockStore = createStoreMock(mockPreloadState);
 
-        test('and edit mode is off', () => {
+        test('it renders', () => {
             (useUser as jest.Mock).mockReturnValue({
                 userState: {
                     user: userMock,
@@ -66,53 +67,27 @@ describe('Header', () => {
             (useRoutines as jest.Mock).mockReturnValue({
                 routinesState: mockRoutinesNotEditing,
                 handleEditMode: mockHandleEditMode,
+                handleAddRoutine: mockHandleAddRoutine,
             });
 
             render(
                 <Provider store={mockStore}>
-                    <Header />
+                    <HomePage />
                 </Provider>,
                 { wrapper: MemoryRouter }
             );
 
-            const backButtonElement = screen.getByRole('link');
-            expect(backButtonElement).toBeInTheDocument();
-            fireEvent.click(backButtonElement);
-            expect(mockHandleEditMode).toHaveBeenCalledTimes(0);
-        });
-    });
-
-    describe('when the user press back button', () => {
-        const mockPreloadState = createPreloadedState(
-            mockUser,
-            mockRoutinesEditing,
-            mockDefaultExercises
-        );
-        const mockStore = createStoreMock(mockPreloadState);
-
-        test('and edit mode is on', () => {
-            (useUser as jest.Mock).mockReturnValue({
-                userState: {
-                    user: userMock,
-                },
-            });
-
-            (useRoutines as jest.Mock).mockReturnValue({
-                routinesState: mockRoutinesEditing,
-                handleEditMode: mockHandleEditMode,
-            });
-
-            render(
-                <Provider store={mockStore}>
-                    <Header />
-                </Provider>,
-                { wrapper: MemoryRouter }
-            );
-
-            const backButtonElement = screen.getByRole('link');
-            expect(backButtonElement).toBeInTheDocument();
-            fireEvent.click(backButtonElement);
+            const routineName = screen.getByText('mockRoutinename');
+            expect(routineName).toBeInTheDocument();
+            const buttons = screen.getAllByRole('button');
+            const editButton = buttons[1];
+            expect(editButton).toBeInTheDocument();
+            fireEvent.click(editButton);
             expect(mockHandleEditMode).toHaveBeenCalled();
+            const addRoutineButton = buttons[2];
+            expect(addRoutineButton).toBeInTheDocument();
+            fireEvent.click(addRoutineButton);
+            expect(mockHandleAddRoutine).toHaveBeenCalled();
         });
     });
 });
