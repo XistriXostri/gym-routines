@@ -1,9 +1,6 @@
 import { auth } from '../../../config';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
-import {
-    createUserFromDatabase,
-    createUserFromGoogleUser,
-} from '../../models/user/user.factory';
+import { createUserFromGoogleUser } from '../../models/user/user.factory';
 import { useEffect, useMemo } from 'react';
 import { UsersRepository } from '../../services/repository/repo.user';
 import { UserStructure, UserStructureOnDatabase } from '../../models/user/user';
@@ -52,8 +49,6 @@ export function useUser() {
         dispatch(routinesLoadCreator([]));
         setItem('user', '');
     };
-
-    //TODO: fix non-serializable value alert
 
     const handleRegister = async (userData: UserStructure) => {
         repoUsers
