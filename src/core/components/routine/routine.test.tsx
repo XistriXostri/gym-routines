@@ -3,33 +3,28 @@ import '@testing-library/jest-dom/extend-expect';
 import { Routine } from './routine';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import {
-    createPreloadedState,
-    createStoreMock,
-} from '../../../mocks/store.mock';
-import { mockUser } from '../../../mocks/user.mock';
+import { createPreloadedState, createStoreMock } from '../../mocks/store.mock';
+import { mockUser } from '../../mocks/user.mock';
 import {
     mockRoutinesEditing,
     mockRoutinesNotEditing,
     routineMock,
-} from '../../../mocks/routines.mock';
-import { mockDefaultExercises } from '../../../mocks/default.exercises.mock';
+} from '../../mocks/routines.mock';
+import { mockDefaultExercises } from '../../mocks/default.exercises.mock';
 import { useRoutines } from '../../hooks/use.routines';
-import * as mockHooks from '../../../mocks/use.routines.mock';
+import userEvent from '@testing-library/user-event';
 
-//Guardo esto por si aca
-// beforeEach(() => {
-//     jest.clearAllMocks();
-//     (useRoutines as jest.Mock).mockReturnValue({
-//         handleEditMode: mockHandleEditMode,
-//         handleDeleteRoutine: mockHandleDeleteRoutine,
-//     });
-// });
+jest.mock('../../hooks/use.routines');
 
 describe('Routine', () => {
+    const mockHandleDeleteRoutine = jest.fn();
+    const mockHandleUpdateRoutine = jest.fn();
+    const mockHandleSetCurrentRoutine = jest.fn();
+
     beforeEach(() => {
         jest.clearAllMocks();
     });
+
     test('Renders content with the correct name', () => {
         const preloadState = createPreloadedState(
             mockUser,
@@ -37,6 +32,11 @@ describe('Routine', () => {
             mockDefaultExercises
         );
         const mockStore = createStoreMock(preloadState);
+
+        (useRoutines as jest.Mock).mockReturnValue({
+            routinesState: mockRoutinesNotEditing,
+            handleSetCurrentRoutine: mockHandleSetCurrentRoutine,
+        });
 
         render(
             <Provider store={mockStore}>
@@ -48,6 +48,8 @@ describe('Routine', () => {
         expect(routineLink).toBeInTheDocument();
         const routineButton = screen.getByRole('button');
         expect(routineButton).toHaveTextContent('mockRoutinename');
+        fireEvent.click(routineButton);
+        expect(mockHandleSetCurrentRoutine).toHaveBeenCalled();
         //Para imprimir lo que renderiza:
         //screen.debug();
     });
@@ -58,7 +60,14 @@ describe('Routine', () => {
             mockRoutinesEditing,
             mockDefaultExercises
         );
+
         const mockStore = createStoreMock(preloadState);
+
+        (useRoutines as jest.Mock).mockReturnValue({
+            handleDeleteRoutine: mockHandleDeleteRoutine,
+            handleUpdateRoutine: mockHandleUpdateRoutine,
+            routinesState: mockRoutinesEditing,
+        });
 
         render(
             <Provider store={mockStore}>
@@ -73,22 +82,18 @@ describe('Routine', () => {
         expect(TextInput).toBeInTheDocument();
     });
 
-    test('when use delete button calls handleDeleteRoutine', () => {
+    test('when use buttons and inputs', async () => {
         const preloadState = createPreloadedState(
             mockUser,
             mockRoutinesEditing,
             mockDefaultExercises
         );
         const mockStore = createStoreMock(preloadState);
-        const mockHandleUpdateRoutine = jest.fn();
-        const mockHandleEditMode = jest.fn();
 
-        // Intento 1
-        jest.mock('../../hooks/use.routines', () => {
-            return jest.fn(() => ({
-                handleUpdateRoutine: mockHandleUpdateRoutine,
-                handleEditMode: mockHandleEditMode,
-            }));
+        (useRoutines as jest.Mock).mockReturnValue({
+            handleDeleteRoutine: mockHandleDeleteRoutine,
+            handleUpdateRoutine: mockHandleUpdateRoutine,
+            routinesState: mockRoutinesEditing,
         });
 
         render(
@@ -98,30 +103,15 @@ describe('Routine', () => {
             { wrapper: MemoryRouter }
         );
 
-        screen.debug();
-        const DeleteButton = screen.getByRole('button');
-        const TextInput = screen.getByRole('textbox');
-        expect(DeleteButton).toBeInTheDocument();
-        expect(TextInput).toBeInTheDocument();
-        fireEvent.change(TextInput, { target: { value: 'new value' } });
-        fireEvent.click(DeleteButton);
-        expect(mockHooks.mockHandleDeleteRoutine).toHaveBeenCalled();
+        const deleteButton = screen.getByRole('button');
+        expect(deleteButton).toBeInTheDocument();
+
+        fireEvent.click(deleteButton);
+        expect(mockHandleDeleteRoutine).toHaveBeenCalled();
+
+        const texbox = screen.getByTestId('routineName');
+        expect(texbox).toBeInTheDocument();
+        userEvent.type(texbox, 'e');
+        expect(mockHandleUpdateRoutine).toHaveBeenCalled();
     });
 });
-
-// Intento 2
-// (useRoutines as jest.Mock).mockReturnValue({
-//     handleUpdateRoutine: mockHandleUpdateRoutine,
-//     handleEditMode: mockHandleEditMode,
-// });
-
-// Intento 3
-// jest.mock('../../hooks/use.routines', () => {
-//     return {
-//         useRoutines: () => {
-//             return {
-//                 handleDeleteRoutine: mockHooks.mockHandleDeleteRoutine,
-//             };
-//         },
-//     };
-// });

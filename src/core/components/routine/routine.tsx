@@ -24,6 +24,7 @@ export function Routine({ routine }: { routine: RoutineStructure }) {
                         type="text"
                         name="name"
                         id="routineName"
+                        data-testid="routineName"
                         value={routine.name}
                         onInput={handleInput}
                     />
