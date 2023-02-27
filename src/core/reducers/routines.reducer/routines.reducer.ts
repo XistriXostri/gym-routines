@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { createExerciseFromDefaultExercise } from '../models/exercise/exercise.factory';
-import { RoutineStructure } from '../models/routine/routine.model';
-import { SesionStructure } from '../models/sesion/sesion';
+import { createExerciseFromDefaultExercise } from '../../models/exercise/exercise.factory';
+import { RoutineStructure } from '../../models/routine/routine.model';
+import { SesionStructure } from '../../models/sesion/sesion';
 import {
     exerciseAddCreator,
     exerciseDeleteCreator,
@@ -17,7 +17,7 @@ import {
     sesionDeleteCreator,
     sesionSetCurrentCreator,
     sesionUpdateCreator,
-} from './action.creators';
+} from '../action.creators';
 
 export type InitialRoutinesState = {
     routines: Array<RoutineStructure>;
@@ -26,7 +26,7 @@ export type InitialRoutinesState = {
     isEditing: boolean;
 };
 
-const initialState: InitialRoutinesState = {
+export const initialState: InitialRoutinesState = {
     routines: [],
     currentRoutine: null,
     currentSesion: null,
