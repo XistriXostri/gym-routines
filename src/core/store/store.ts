@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { defaultExerciseReducer } from '../reducers/default.exercises.reducer';
-import { routinesReducer } from '../reducers/routines.reducer';
+import { routinesReducer } from '../reducers/routines.reducer/routines.reducer';
 import { userReducer } from '../reducers/user.reducer';
 
 export const store = configureStore({

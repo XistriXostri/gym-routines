@@ -6,7 +6,7 @@ import {
 import {
     InitialRoutinesState,
     routinesReducer,
-} from '../reducers/routines.reducer';
+} from '../reducers/routines.reducer/routines.reducer';
 import { InitialUserState, userReducer } from '../reducers/user.reducer';
 import { RootState } from '../store/store';
 
